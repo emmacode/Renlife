@@ -3,6 +3,7 @@ import { ReactNode } from "react";
 export interface tsInputOption {
     value?: string;
     label?: ReactNode;
+    checked?: boolean;
 }
 export type tsInputOptions = tsInputOption[];
 

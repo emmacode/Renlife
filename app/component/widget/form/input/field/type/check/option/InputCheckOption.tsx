@@ -7,7 +7,7 @@ interface tsLocal {
 }
 const InputCheckOption = (props: tsLocal) => {
     return (
-        <div className="w-[fit-content] flex items-center" onClick={props.onClick}>
+        <div className="w-[fit-content] flex items-center cursor-pointer" onClick={props.onClick}>
             <div className="bg-white w-[24px] h-[24px] p-[5px] border-[0.92px] border-greenB rounded-md">
                 <div className={`${props.checked ? 'bg-blackA' : ''} w-full h-full rounded-full`}></div>
             </div>

@@ -1,7 +1,7 @@
 import { tsInputChangeObj, tsInputOption, tsInputOptions, tsInputs } from "@/app/component/widget/form/input/type";
 import { setInputsOnInputChange } from "@/app/util/pre_def/func/form";
 import { __month_list } from "@/app/util/pre_def/time/month";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const yrOptions: tsInputOptions = []
 for(let a = 0; a <= 100; a++){
@@ -12,8 +12,6 @@ for(let a = 0; a <= 100; a++){
 }
 
 export const useSurveyForm = () => {
-    const dayOptions: tsInputOptions = [];
-
     const [inputsA1, setInputsA1] = useState<tsInputs>({
         photo: {
             label: 'Upload your photo',
@@ -120,6 +118,33 @@ export const useSurveyForm = () => {
     const [inputsB, setInputsB] = useState<tsInputs>({
         
     });
+
+    useEffect(() => {
+        const newInputs = {...inputsA2};
+        const mon = inputsA2.dob_month.value || '';
+        let dayLim = 31;
+
+        if(mon === 'february'){
+            dayLim = 29;
+        }
+        else if(['april', 'june', 'september', 'november',].includes(mon)){
+            dayLim = 30;
+        }
+
+        const dyOptions: tsInputOptions = []
+        for(let a = 1; a <= dayLim; a++){
+            dyOptions.push({
+                value: `${a}`,
+            });
+        }
+
+        if(parseInt(newInputs.dob_day.value || '') > dayLim){
+            newInputs.dob_day.value = `${dayLim}`;
+        }
+        newInputs.dob_day.options = dyOptions;
+        
+        setInputsA2({...newInputs});
+    }, [inputsA2.dob_month.value]);
 
     const setInput = (part: 'a1' | 'a2' | 'a3' | 'b', input_obj: tsInputChangeObj) => {
         const inputName = input_obj.name;

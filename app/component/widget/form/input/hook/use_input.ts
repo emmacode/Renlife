@@ -15,7 +15,7 @@ export const useInput = (props?: tsLocal) => {
             `
                 mb-8 relative block
                 ${
-                    [undefined, 'text'].includes(props?.input_type) ? '' :
+                    [undefined, 'text', 'check'].includes(props?.input_type) ? '' :
                     'cursor-pointer'
                 }
             `
