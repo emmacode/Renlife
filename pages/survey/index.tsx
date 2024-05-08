@@ -1,4 +1,4 @@
-import SurveyBase from "@/asset_src/component/gizmo/survey/SurveyBase";
+import SurveyBase from "@/app/component/gizmo/survey/SurveyBase";
 
 const SurveyPage = () => {
 

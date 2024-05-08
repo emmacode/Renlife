@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+	font-family: 'Poppins';
+	src: url('/font/Poppins/Poppins-Regular.ttf');
+	font-weight: normal;
+}
+@font-face {
+	font-family: 'WorkSans';
+	src: url('/font/Work_Sans/WorkSans-VariableFont_wght.ttf');
+	font-weight: normal;
+}
