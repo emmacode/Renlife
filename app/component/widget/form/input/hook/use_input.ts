@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { tsInput } from "../type";
 
 interface tsLocal {
@@ -6,11 +7,13 @@ interface tsLocal {
 }
 
 export const useInput = (props?: tsLocal) => {
+    const [parentClickKey, setParentClickKey] = useState<string | undefined>(undefined);
+
     const className = `
         ${
             props?.style_a !== false ?
             `
-                mb-8 block
+                mb-8 relative block
                 ${
                     [undefined, 'text'].includes(props?.input_type) ? '' :
                     'cursor-pointer'
@@ -23,5 +26,7 @@ export const useInput = (props?: tsLocal) => {
 
     return {
         className,
+        parentClickKey,
+        setParentClickKey,
     };
 }

@@ -1,19 +1,31 @@
 import Image from "next/image";
 import { tsInput } from "../../../type";
 import InputFieldPlaceholder from "../../placeholder/InputFieldPlaceholder";
+import { useInputSelectField } from "./hook/use_input_select_field";
+import InputSelectOptions from "./option/InputSelectOptions";
 
 interface tsLocal {
     input: tsInput;
     // className?: string;
     style_a?: boolean; //default = true;
+    parentClickKey?: string;
     onChange?: (value?: string) => void;
 }
 const InputSelectField = (props: tsLocal) => {
-    const valueNode = '';
+    const {
+        openOptions, valueNode,
+        setOpenOptions, setValueNode,
+    } = useInputSelectField({
+        parent_click_key: props.parentClickKey,
+    });
 
     return (
         <>
-            <div className="h-full flex items-center justify-between">
+            <div className="h-full flex items-center justify-between"
+                onClick={() => {
+                    setOpenOptions(true);
+                }}
+            >
                 <InputFieldPlaceholder
                     className={`${valueNode ? `!text-blackA` : '!text-greyB'} pr-2`}
                     placeholder={valueNode || props.input.placeholder}
@@ -26,6 +38,20 @@ const InputSelectField = (props: tsLocal) => {
                     height={0}
                 />
             </div>
+            {
+                props.input.options &&
+                <InputSelectOptions
+                    options={props.input.options}
+                    open={openOptions}
+                    onClose={() => {
+                        setOpenOptions(false);
+                    }}
+                    onChange={(option) => {
+                        props.onChange && props.onChange(option.value);
+                        setValueNode(option.label || option.value);
+                    }}
+                />
+            }
         </>
     )
 }

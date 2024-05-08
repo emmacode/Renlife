@@ -11,13 +11,18 @@ interface tsLocal {
     onChange?: (obj: tsInputChangeObj) => void;
 }
 const Input = (props: tsLocal) => {
-    const {className} = useInput({
+    const {className, parentClickKey, setParentClickKey} = useInput({
         input_type: props.input.type,
         style_a: props.style_a,
     });
 
     return (
-        <label className={`${props.className || ''} ${className}`}>
+        <label className={`${props.className || ''} ${className}`}
+            onClick={() => {
+                props.input.type === 'select' &&
+                setParentClickKey(`${Date.now()}`);
+            }}
+        >
             {
                 props.input.label &&
                 <InputLabel
@@ -29,6 +34,7 @@ const Input = (props: tsLocal) => {
                 input={props.input}
                 input_name={props.name}
                 style_a={props.style_a}
+                parentClickKey={parentClickKey}
                 onChange={props.onChange}
             />
         </label>

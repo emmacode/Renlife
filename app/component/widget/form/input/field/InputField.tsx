@@ -10,6 +10,7 @@ interface tsLocal {
     input_name: string;
     className?: string;
     style_a?: boolean; //default = true;
+    parentClickKey?: string;
     onChange?: (obj: tsInputChangeObj) => void;
 }
 const InputField = (props: tsLocal) => {
@@ -50,6 +51,7 @@ const InputField = (props: tsLocal) => {
                 <InputSelectField
                     input={props.input}
                     style_a={props.style_a}
+                    parentClickKey={props.parentClickKey}
                     onChange={(value) => {
                         props.onChange && props.onChange(handleFieldChange({
                             value,

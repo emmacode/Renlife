@@ -12,3 +12,7 @@
 	src: url('/font/Work_Sans/WorkSans-VariableFont_wght.ttf');
 	font-weight: normal;
 }
+
+.transitionA {
+	transition: all ease 0.25s;
+}
