@@ -10,7 +10,7 @@ interface tsLocal {
     onChange?: (files?: FileList | null) => void;
 }
 const InputFileField = (props: tsLocal) => {
-    const {handleChange} = useInputFileFieldChange();
+    const {valueNode, handleChange} = useInputFileFieldChange();
 
     return (
         <>
@@ -47,8 +47,8 @@ const InputFileField = (props: tsLocal) => {
                             {
                                 props.input.placeholder &&
                                 <InputFieldPlaceholder
-                                    className="mt-2"
-                                    placeholder={props.input.placeholder}
+                                    className={`${valueNode ? '!text-blackA' : ''} mt-2`}
+                                    placeholder={valueNode || props.input.placeholder}
                                 />
                             }
                         </div>

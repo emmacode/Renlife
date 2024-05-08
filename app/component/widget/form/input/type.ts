@@ -8,6 +8,7 @@ export interface tsInputOption {
 export type tsInputOptions = tsInputOption[];
 
 export interface tsInput {
+    pseudo_key?: string; //acts like react element key;
     label?: string;
     type?: 'text' | 'textarea' | 'select' | 'file' | 'check';
     check_type?: 'radio';

@@ -15,9 +15,9 @@ export const useInputField = (props?: tsLocal) => {
         ${
             props?.style_a !== false ?
             `
-                block mt-2 rounded-lg px-4 py-4
+                block mt-2 rounded-lg py-4
                 ${props?.input_type === 'textarea' ? 'h-[100px]' : ''}
-                ${props?.input_type === 'check' ? '' : 'bg-white'}
+                ${props?.input_type === 'check' ? '' : 'px-4 bg-white'}
                 ${
                     props?.input_type === 'file' ?
                     `h-[120px]`

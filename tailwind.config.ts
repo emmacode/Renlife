@@ -15,6 +15,7 @@ const config: Config = {
         greenB: '#D8DBFF',
         greyA: '#F1F2FF',
         greyB: '#C8C8C8',
+        redA: '#ff0000',
         whiteA: '#FAFAFA',
       },
       fontFamily: {

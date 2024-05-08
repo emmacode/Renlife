@@ -28,6 +28,7 @@ const InputSelectOptions = (props: tsLocal) => {
                                     option={option}
                                     checked={selectedIndex === a}
                                     onClick={() => {
+                                        props.onClose && props.onClose();
                                         props.onChange && props.onChange(option);
                                         setSelectedIndex(a);
                                     }}

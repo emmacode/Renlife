@@ -1,8 +1,18 @@
 import { tsInputChangeObj, tsInputOption, tsInputOptions, tsInputs } from "@/app/component/widget/form/input/type";
-import { setInputsOnInputChange } from "@/app/util/pre_def/func/form";
+import { getInputsAsJsonOrFormData, setInputsOnInputChange, tsFormOutput } from "@/app/util/pre_def/func/form";
 import { __month_list } from "@/app/util/pre_def/time/month";
 import { useEffect, useState } from "react";
 
+const yesNoOptions: tsInputOptions = [
+    {
+        value: 'yes',
+        label: 'Yes',
+    },
+    {
+        value: 'no',
+        label: 'No',
+    },
+];
 const yrOptions: tsInputOptions = []
 for(let a = 0; a <= 100; a++){
     const year = 2024 - a;
@@ -67,56 +77,67 @@ export const useSurveyForm = () => {
         delivery_mode: {
             label: 'Mode of delivery',
             placeholder: 'Select an option',
+            type: 'select',
+            options: [],
         },
         weight: {
             label: 'Weight',
             placeholder: 'Input weight',
         },
         family_history: {
-            label: 'Family history',
+            label: 'Family History',
             type: 'check',
             check_type: 'radio',
-            options: [
-                {
-                    value: 'yes',
-                    label: 'Yes',
-                },
-                {
-                    value: 'no',
-                    label: 'No',
-                },
-            ],
+            options: yesNoOptions,
         },
         breast_feed: {
             label: 'Breast feed',
-            type: 'check',
-            check_type: 'radio',
-            options: [
-                {
-                    value: 'yes',
-                    label: 'Yes',
-                },
-                {
-                    value: 'no',
-                    label: 'No',
-                },
-            ],
+            placeholder: 'Select an option',
+            type: 'select',
+            options: [],
         },
         bruising_during_birth: {
             label: 'Bruising during birth',
+            type: 'check',
+            check_type: 'radio',
+            options: yesNoOptions,
         },
         infection: {
             label: 'Infection',
+            type: 'check',
+            check_type: 'radio',
+            options: yesNoOptions,
+        },
+    });
+
+    const [inputsB, setInputsB] = useState<tsInputs>({
+        gesticulation_period: {
+            label: 'Gesticulation Period',
+            placeholder: 'Select an option',
+            type: 'select',
+            options: [],
+        },
+        scelera: {
+            label: 'Scelera (The white part of the eyes), is it white?',
+            type: 'check',
+            check_type: 'radio',
+            options: yesNoOptions,
+        },
+        skin_colour: {
+            label: 'Skin Color (What region has it gotten to?)',
+            placeholder: 'Select an option',
+            type: 'select',
+            options: [],
         },
         poop_colour: {
             label: 'Poop Color (Please describe the color)',
             type: 'textarea',
             placeholder: 'Enter your description here.',
         },
-    });
-
-    const [inputsB, setInputsB] = useState<tsInputs>({
-        
+        temperature: {
+            label: 'Temperature',
+            placeholder: 'Input temperature',
+        },
     });
 
     useEffect(() => {
@@ -139,10 +160,11 @@ export const useSurveyForm = () => {
         }
 
         if(parseInt(newInputs.dob_day.value || '') > dayLim){
-            newInputs.dob_day.value = `${dayLim}`;
+            newInputs.dob_day.value = undefined;
+            newInputs.dob_day.pseudo_key = mon;
         }
         newInputs.dob_day.options = dyOptions;
-        
+
         setInputsA2({...newInputs});
     }, [inputsA2.dob_month.value]);
 
@@ -165,6 +187,19 @@ export const useSurveyForm = () => {
             setInputsB({...inputs});
         }
     }
+    const processInputs = async (): Promise<tsFormOutput> => {
+        const inputs = {
+            ...inputsA1,
+            ...inputsA2,
+            ...inputsA3,
+            ...inputsB,
+        };
+
+        const processedInputs = await getInputsAsJsonOrFormData(inputs, 'json');
+        console.log(processedInputs);
+
+        return processedInputs;
+    }
 
     return {
         inputsA1,
@@ -172,5 +207,6 @@ export const useSurveyForm = () => {
         inputsA3,
         inputsB,
         setInput,
+        processInputs,
     };
 }

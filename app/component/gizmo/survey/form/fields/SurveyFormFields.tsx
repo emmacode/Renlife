@@ -4,6 +4,7 @@ import { tsInputChangeObj, tsInputs } from "@/app/component/widget/form/input/ty
 interface tsLocal {
     inputs: tsInputs;
     className?: string;
+    style_a?: boolean;
     onChange?: (obj: tsInputChangeObj) => void;
 }
 const SurveyFormFields = (props: tsLocal) => {
@@ -14,7 +15,14 @@ const SurveyFormFields = (props: tsLocal) => {
                 Object.entries(props.inputs).map(([name, input], a) => {
                     return (
                         <Input
-                            key={a}
+                            key={`${a}_${input.pseudo_key || ''}`}
+                            className={`
+                                ${
+                                    props.style_a ?
+                                    `${a === 0 ? 'max-w-[80px]' : 'max-w-[120px]'} ${a > 0 ? 'ml-4' : ''} w-full` :
+                                    ''
+                                }
+                            `}
                             input={input}
                             name={name}
                             onChange={props.onChange}
