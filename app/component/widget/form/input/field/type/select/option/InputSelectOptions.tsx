@@ -14,12 +14,12 @@ const InputSelectOptions = (props: tsLocal) => {
     return (
         <>
             <div className={`
-                    absolute z-[1] w-full left-0 top-full transitionA rounded-md overflow-hidden
+                    absolute z-[1] w-[fit-content] left-0 top-full transitionA rounded-md overflow-hidden
                     ${props.open ? 'mt-2' : 'h-0'}
                 `}
                 onMouseLeave={props.onClose}
             >
-                <div className="max-h-[200px] overflow-y-auto">
+                <div className="max-h-[200px] overflow-y-auto hide_scrollbar overscroll-contain">
                     {
                         props.options.map((option, a) => {
                             return (

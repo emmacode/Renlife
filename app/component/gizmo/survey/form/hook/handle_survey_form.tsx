@@ -1,8 +1,18 @@
-import { tsInputChangeObj, tsInputs } from "@/app/component/widget/form/input/type";
-import { setInputsOnInputChange } from "@/app/util/pre_def/func/forn";
+import { tsInputChangeObj, tsInputOption, tsInputOptions, tsInputs } from "@/app/component/widget/form/input/type";
+import { setInputsOnInputChange } from "@/app/util/pre_def/func/form";
+import { __month_list } from "@/app/util/pre_def/time/month";
 import { useState } from "react";
 
+const yrOptions: tsInputOptions = []
+for(let a = 0; a <= 100; a++){
+    const year = 2024 - a;
+    yrOptions.push({
+        value: `${year}`,
+    });
+}
+
 export const useSurveyForm = () => {
+    const dayOptions: tsInputOptions = [];
 
     const [inputsA1, setInputsA1] = useState<tsInputs>({
         photo: {
@@ -35,10 +45,23 @@ export const useSurveyForm = () => {
         dob_month: {
             placeholder: 'Month',
             type: 'select',
+            options: [
+                ...(
+                    __month_list.map((month) => {
+                        const option: tsInputOption = {
+                            value: month,
+                            label: <span className="capitalize">{month}</span>,
+                        };
+
+                        return option;
+                    })
+                )
+            ],
         },
         dob_year: {
             placeholder: 'Year',
             type: 'select',
+            options: yrOptions,
         },
     });
 

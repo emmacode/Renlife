@@ -1,7 +1,8 @@
+import { ReactNode } from "react";
 
 export interface tsInputOption {
     value?: string;
-    label?: string;
+    label?: ReactNode;
 }
 export type tsInputOptions = tsInputOption[];
 

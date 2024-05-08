@@ -13,6 +13,15 @@
 	font-weight: normal;
 }
 
+
+.hide_scrollbar::-webkit-scrollbar {
+	display: none;
+}
+
+.hide_scrollbar {
+	-ms-overflow-style: none;  /* IE and Edge */
+	scrollbar-width: none;  /* Firefox */
+}
 .transitionA {
 	transition: all ease 0.25s;
 }
