@@ -10,7 +10,7 @@ export const useInput = (props?: tsLocal) => {
         ${
             props?.style_a !== false ?
             `
-                text-[12px] mb-8 block
+                mb-8 block
             `
             :
             ``

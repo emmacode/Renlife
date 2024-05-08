@@ -1,13 +1,14 @@
 import InputField from "./field/InputField";
 import { useInput } from "./hook/use_input";
 import InputLabel from "./label/InputLabel";
-import { tsInput } from "./type";
+import { tsInput, tsInputChangeObj } from "./type";
 
 interface tsLocal {
     input: tsInput;
     name: string;
     className?: string;
     style_a?: boolean; //default = true;
+    onChange?: (obj: tsInputChangeObj) => void;
 }
 const Input = (props: tsLocal) => {
     const {className} = useInput({
@@ -26,7 +27,9 @@ const Input = (props: tsLocal) => {
             }
             <InputField
                 input={props.input}
+                input_name={props.name}
                 style_a={props.style_a}
+                onChange={props.onChange}
             />
         </label>
     )

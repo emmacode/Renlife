@@ -1,13 +1,15 @@
 import Input from "@/app/component/widget/form/input/Input";
-import { tsInputs } from "@/app/component/widget/form/input/type";
+import { tsInputChangeObj, tsInputs } from "@/app/component/widget/form/input/type";
 
 interface tsLocal {
     inputs: tsInputs;
+    className?: string;
+    onChange?: (obj: tsInputChangeObj) => void;
 }
 const SurveyFormFields = (props: tsLocal) => {
 
     return (
-        <div>
+        <div className={`${props.className || ''}`}>
             {
                 Object.entries(props.inputs).map(([name, input], a) => {
                     return (
@@ -15,6 +17,7 @@ const SurveyFormFields = (props: tsLocal) => {
                             key={a}
                             input={input}
                             name={name}
+                            onChange={props.onChange}
                         />
                     )
                 })

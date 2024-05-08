@@ -4,7 +4,7 @@ import { useState } from "react";
 
 export const useSurveyForm = () => {
 
-    const [inputsA, setInputsA] = useState<tsInputs>({
+    const [inputsA1, setInputsA1] = useState<tsInputs>({
         photo: {
             label: 'Upload your photo',
             placeholder: 'Your image goes here',
@@ -26,6 +26,8 @@ export const useSurveyForm = () => {
                 },
             ],
         },
+    });
+    const [inputsA2, setInputsA2] = useState<tsInputs>({
         dob_day: {
             placeholder: 'Day',
             type: 'select',
@@ -38,6 +40,9 @@ export const useSurveyForm = () => {
             placeholder: 'Year',
             type: 'select',
         },
+    });
+
+    const [inputsA3, setInputsA3] = useState<tsInputs>({
         delivery_mode: {
             label: 'Mode of delivery',
             placeholder: 'Select an option',
@@ -91,11 +96,19 @@ export const useSurveyForm = () => {
         
     });
 
-    const setInput = (part: 'a' | 'b', input_obj: tsInputChangeObj) => {
+    const setInput = (part: 'a1' | 'a2' | 'a3' | 'b', input_obj: tsInputChangeObj) => {
         const inputName = input_obj.name;
-        if(part === 'a' && inputName in inputsA){
-            const inputs = setInputsOnInputChange(input_obj, inputsA);
-            setInputsA({...inputs});
+        if(part === 'a1' && inputName in inputsA1){
+            const inputs = setInputsOnInputChange(input_obj, inputsA1);
+            setInputsA1({...inputs});
+        }
+        else if(part === 'a2' && inputName in inputsA2){
+            const inputs = setInputsOnInputChange(input_obj, inputsA2);
+            setInputsA2({...inputs});
+        }
+        else if(part === 'a3' && inputName in inputsA3){
+            const inputs = setInputsOnInputChange(input_obj, inputsA3);
+            setInputsA3({...inputs});
         }
         else if(part === 'b' && inputName in inputsB){
             const inputs = setInputsOnInputChange(input_obj, inputsB);
@@ -104,7 +117,9 @@ export const useSurveyForm = () => {
     }
 
     return {
-        inputsA,
+        inputsA1,
+        inputsA2,
+        inputsA3,
         inputsB,
         setInput,
     };

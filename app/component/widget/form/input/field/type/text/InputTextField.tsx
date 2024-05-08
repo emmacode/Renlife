@@ -1,21 +1,15 @@
-import { tsInput } from "../../type";
+
+import { tsInput } from "../../../type";
+import { useInputTextFieldChange } from "./hook/use_input_text_field_change";
 
 interface tsLocal {
     input: tsInput;
     className?: string;
     style_a?: boolean; //default = true;
+    onChange?: (value?: string) => void;
 }
 const InputTextField = (props: tsLocal) => {
-    const className = `
-        ${
-            props.style_a !== false ?
-            `
-                bg-transparent text-[inherit] font-[inherit] border-none focus:outline-none w-full h-full resize-none
-            `
-            :
-            ``
-        }
-    `;
+    const {className, handleChange} = useInputTextFieldChange();
 
     return (
         <>
@@ -24,6 +18,9 @@ const InputTextField = (props: tsLocal) => {
                 <input
                     className={className}
                     placeholder={props.input.placeholder}
+                    onChange={(e) => {
+                        props.onChange && props.onChange(handleChange(e));
+                    }}
                 />
             }
             {
@@ -31,6 +28,9 @@ const InputTextField = (props: tsLocal) => {
                 <textarea
                     className={className}
                     placeholder={props.input.placeholder}
+                    onChange={(e) => {
+                        props.onChange && props.onChange(handleChange(e));
+                    }}
                 ></textarea>
             }
         </>
