@@ -7,7 +7,8 @@ export type tsInputOptions = tsInputOption[];
 
 export interface tsInput {
     label?: string;
-    type?: 'text' | 'textarea' | 'select' | 'file' | 'radio';
+    type?: 'text' | 'textarea' | 'select' | 'file' | 'check';
+    check_type?: 'radio';
     value?: string;
     placeholder?: string;
     files?: FileList | null;

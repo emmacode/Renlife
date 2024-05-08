@@ -1,5 +1,6 @@
 import { tsInput, tsInputChangeObj } from "../type";
 import { useInputField } from "./hook/use_input_field";
+import InputCheckField from "./type/check/InputCheckField";
 import InputFileField from "./type/file/InputFileField";
 import InputSelectField from "./type/select/InputSelectField";
 import InputTextField from "./type/text/InputTextField";
@@ -47,6 +48,18 @@ const InputField = (props: tsLocal) => {
             {
                 props.input.type === 'select' &&
                 <InputSelectField
+                    input={props.input}
+                    style_a={props.style_a}
+                    onChange={(value) => {
+                        props.onChange && props.onChange(handleFieldChange({
+                            value,
+                        }));
+                    }}
+                />
+            }
+            {
+                props.input.type === 'check' &&
+                <InputCheckField
                     input={props.input}
                     style_a={props.style_a}
                     onChange={(value) => {

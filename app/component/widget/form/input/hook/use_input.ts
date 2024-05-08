@@ -11,6 +11,10 @@ export const useInput = (props?: tsLocal) => {
             props?.style_a !== false ?
             `
                 mb-8 block
+                ${
+                    [undefined, 'text'].includes(props?.input_type) ? '' :
+                    'cursor-pointer'
+                }
             `
             :
             ``

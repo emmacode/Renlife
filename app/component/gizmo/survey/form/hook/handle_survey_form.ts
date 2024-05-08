@@ -53,7 +53,8 @@ export const useSurveyForm = () => {
         },
         family_history: {
             label: 'Family history',
-            type: 'radio',
+            type: 'check',
+            check_type: 'radio',
             options: [
                 {
                     value: 'yes',
@@ -67,7 +68,8 @@ export const useSurveyForm = () => {
         },
         breast_feed: {
             label: 'Breast feed',
-            type: 'radio',
+            type: 'check',
+            check_type: 'radio',
             options: [
                 {
                     value: 'yes',

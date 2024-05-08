@@ -25,6 +25,12 @@ const SurveyForm = () => {
                     }}
                 />
             </div>
+            <SurveyFormFields
+                inputs={inputsA3}
+                onChange={(obj) => {
+                    setInput('a3', obj);
+                }}
+            />
             {/* <SurveyFormFields
                 inputs={inputsB}
             /> */}

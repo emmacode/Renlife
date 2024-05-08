@@ -9,16 +9,15 @@ interface tsLocal {
     onChange?: (value?: string) => void;
 }
 const InputSelectField = (props: tsLocal) => {
+    const valueNode = '';
 
     return (
         <>
             <div className="h-full flex items-center justify-between">
-                {
-                    props.input.placeholder &&
-                    <InputFieldPlaceholder
-                        placeholder={props.input.placeholder}
-                    />
-                }
+                <InputFieldPlaceholder
+                    className={`${valueNode ? `!text-blackA` : '!text-greyB'} pr-2`}
+                    placeholder={valueNode || props.input.placeholder}
+                />
                 <Image
                     className="w-auto h-[14px] object-contain"
                     src="/image/vector/chevron_expand_grey.png"

@@ -47,6 +47,7 @@ const InputFileField = (props: tsLocal) => {
                             {
                                 props.input.placeholder &&
                                 <InputFieldPlaceholder
+                                    className="mt-2"
                                     placeholder={props.input.placeholder}
                                 />
                             }
