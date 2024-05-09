@@ -1,10 +1,12 @@
 import Image from "next/image";
+import { RefObject } from "react";
 import { tsInput } from "../../../type";
 import InputFieldPlaceholder from "../../placeholder/InputFieldPlaceholder";
 import { useInputSelectField } from "./hook/use_input_select_field";
 import InputSelectOptions from "./option/InputSelectOptions";
 
 interface tsLocal {
+    parent_ref?: RefObject<HTMLLabelElement>;
     input: tsInput;
     // className?: string;
     style_a?: boolean; //default = true;
@@ -17,12 +19,14 @@ const InputSelectField = (props: tsLocal) => {
         setOpenOptions, setValueNode,
     } = useInputSelectField({
         parent_click_key: props.parentClickKey,
+        parent_ref: props.parent_ref,
     });
 
     return (
         <>
             <div className="h-full flex items-center justify-between"
                 onClick={() => {
+                    console.log('open it')
                     setOpenOptions(true);
                 }}
             >

@@ -1,3 +1,4 @@
+import { RefObject } from "react";
 import { tsInput, tsInputChangeObj } from "../type";
 import { useInputField } from "./hook/use_input_field";
 import InputCheckField from "./type/check/InputCheckField";
@@ -6,6 +7,7 @@ import InputSelectField from "./type/select/InputSelectField";
 import InputTextField from "./type/text/InputTextField";
 
 interface tsLocal {
+    parent_ref?: RefObject<HTMLLabelElement>;
     input: tsInput;
     input_name: string;
     className?: string;
@@ -49,6 +51,7 @@ const InputField = (props: tsLocal) => {
             {
                 props.input.type === 'select' &&
                 <InputSelectField
+                    parent_ref={props.parent_ref}
                     input={props.input}
                     style_a={props.style_a}
                     parentClickKey={props.parentClickKey}
