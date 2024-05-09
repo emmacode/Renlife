@@ -26,7 +26,6 @@ const InputSelectField = (props: tsLocal) => {
         <>
             <div className="h-full flex items-center justify-between"
                 onClick={() => {
-                    console.log('open it')
                     setOpenOptions(true);
                 }}
             >

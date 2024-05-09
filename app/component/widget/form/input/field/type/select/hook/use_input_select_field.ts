@@ -30,13 +30,9 @@ export const useInputSelectField = (props?: tsLocal) => {
     }, [props?.parent_click_key]);
     useEffect(() => {
         if(openOptions){
-            // console.log('to be added');
-            //add event listener;
             document.addEventListener('click', checkClick);
         }
         else {
-            // console.log('to be removed');
-            //remove listener;
             document.removeEventListener('click', checkClick);
         }
     }, [openOptions]);
