@@ -1,3 +1,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+	font-family: 'Poppins';
+	src: url('/font/Poppins/Poppins-Regular.ttf');
+	font-weight: normal;
+}
+@font-face {
+	font-family: 'WorkSans';
+	src: url('/font/Work_Sans/WorkSans-VariableFont_wght.ttf');
+	font-weight: normal;
+}
+
+
+.hide_scrollbar::-webkit-scrollbar {
+	display: none;
+}
+
+.hide_scrollbar {
+	-ms-overflow-style: none;  /* IE and Edge */
+	scrollbar-width: none;  /* Firefox */
+}
+.transitionA {
+	transition: all ease 0.25s;
+}
