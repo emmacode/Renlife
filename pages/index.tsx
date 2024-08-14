@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import Head from "next/head";
-import SurveyBase from "@/app/component/gizmo/survey/SurveyBase";
+import Survey from "@/app/component/field";
 
 const Home = () => {
   return (
@@ -25,7 +25,7 @@ const Home = () => {
         <meta name="twitter:site" content="@renlife" />
       </Head>
 
-      <SurveyBase />
+      <Survey />
     </Fragment>
   );
 };
